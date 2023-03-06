@@ -40,5 +40,5 @@ for (var i = 0; i < requestBody.ques.length; i++) {
 }
 
 $done({
-    body: requestBody
+   body: JSON.parse(JSON.stringify(requestBody))
 });
