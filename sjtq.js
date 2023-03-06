@@ -37,10 +37,10 @@ if (requestBody && requestBody.ques) {
     }
 
     if (selectedArrays.length === 10) {
-        requestBody.ques.splice(0, requestBody.ques.length, ...selectedArrays);
+        requestBody.ques = selectedArrays;
     }
 }
 
 $done({
-    body: JSON.parse(JSON.stringify(requestBody))
-}); 
+    body: JSON.stringify(requestBody)
+});
