@@ -37,24 +37,14 @@ try {
       {"userAnswer":["79416173346844"],"id":21969067503445,"originOptions":[79416004945362,79416173346844,79418447136016,79421781980535]},
       {"userAnswer":["79423853753839","79428277341796","79430346943737"],"id":21971909660301,"originOptions":[79423853753839,79426808419223,79428277341796,79430346943737]},
       {"userAnswer":["79518258900491","79520386562868","79522452516543","79524674302142","79527236009006"],"id":21992708199809,"originOptions":[79518258900491,79520386562868,79522452516543,79524674302142,79527236009006]};]
-    var indexArr = [...new Array(newOptions.length).keys()]; // 创建包含所有索引值的数组
-    var selectedIndexes = [];
-    for (var i = 0; i < 10; i++) { // 随机选择 10 个索引值
-        var randomIndex = Math.floor(Math.random() * indexArr.length);
-        selectedIndexes.push(indexArr[randomIndex]);
-        indexArr.splice(randomIndex, 1); // 移除已经选择的索引值
+      for (var i = 0; i < 10; i++) {
+        var randomIndex = Math.floor(Math.random() * targetArray.length);
+        var randomOptionIndex = Math.floor(Math.random() * newOptions.length);
+        var newQuestion = newOptions[randomOptionIndex];
+        targetArray[randomIndex]["userAnswer"] = newQuestion["userAnswer"];
+        targetArray[randomIndex]["id"] = newQuestion["id"];
+        targetArray[randomIndex]["originOptions"] = newQuestion["originOptions"];
     }
-    for (var j = 0; j < targetArray.length; j++) {
-        if (selectedIndexes.includes(j)) { // 只替换随机选择的索引值对应的元素
-            var randomIndex2 = Math.floor(Math.random() * newOptions.length);
-            var newQuestion = newOptions[randomIndex2];
-            targetArray[j]["userAnswer"] = newQuestion["userAnswer"];
-            targetArray[j]["id"] = newQuestion["id"];
-            targetArray[j]["originOptions"] = newQuestion["originOptions"];
-        }
-    }
+    
+    // 返回修改后的 JSON 对象
     $done({body: JSON.stringify(json)});
-} catch (e) {
-    console.log("Error parsing JSON:", e);
-    $done({});
-}
