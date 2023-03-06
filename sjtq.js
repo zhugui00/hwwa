@@ -1,10 +1,8 @@
-var requestBody = $request.body; // 获取请求主体
+var requestBody = $request.body;
 
 if (requestBody && requestBody.ques) {
-    var selectedArrays = []; // 创建一个空的数组存储所选数组
-
-    // 添加备选数组，每个数组都需要包含"userAnswer"、"id"和"originOptions"字段
     var backupArrays = [
+        { "userAnswer": ["78423321649363"], "id": 21696746345394, "originOptions": [78419445352953,78420203187232,78423321649363,78425669241629] },
         { "userAnswer": ["78379660108563", "78384700300614", "78387444864153", "78389346600489"], id: 21688628448709, "originOptions": [78379660108563, 78382908615071, 78384700300614, 78387444864153, 78389346600489] },
         { "userAnswer": ["78427162885770", "78430132621171", "78433968926487", "78435920890912"], id: 21699795221391, "originOptions": [78427162885770, 78430132621171, 78431831005327, 78433968926487, 78435920890912] },
         { "userAnswer": ["78546311135152"], id: 21729802966439, "originOptions": [78546311135152, 78547750511588, 78548717052922, 78551269549397] },
@@ -24,20 +22,21 @@ if (requestBody && requestBody.ques) {
         { "userAnswer": ["79177943486089", "79181072469552", "79182761752078", "79185078947079"], id: 21896741251176, "originOptions": [79177484643745, 79177943486089, 79181072469552, 79182761752078, 79185078947079] },
         { "userAnswer": ["79204463057553"], id: 21902334462765, "originOptions": [79204463057553, 79205713649953, 79209187668183, 79210561417461] },
         { "userAnswer": ["79532997510078"], id: 21998620554308, "originOptions": [79532997510078, 79535262228933] },
-        { "userAnswer": ["78359758677418", "78362443405870", "78367077159640", "78368880759517"], id: 21685189433085, "originOptions": [78359758677418, 78362443405870, 78365790666179, 78367077159640, 78368880759517] },
-        { "userAnswer": ["78477301539569", "78477680145781", "78481370717983"], id: 21710027287019, "originOptions": [78477301539569, 78477680145781, 78481370717983, 78483445171339] },
-        { "userAnswer": ["78610570579566"], id: 21744940319782, "originOptions": [78605076738829, 78608622169788, 78610570579566, 78612178322990] }, ,
+        { "userAnswer": ["78546311135152"], "id": 21729802966439, "originOptions": [78546311135152,78547750511588,78548717052922,78551269549397] }
         // 添加更多备选数组...
     ];
 
-    while (selectedArrays.length < 10 && backupArrays.length > 0) {
+    var selectedArrays = [];
+    while (selectedArrays.length < requestBody.ques.length) {
         var randomIndex = Math.floor(Math.random() * backupArrays.length);
         selectedArrays.push(backupArrays[randomIndex]);
-        backupArrays.splice(randomIndex, 1);
     }
 
-    if (selectedArrays.length === 10) {
-        requestBody.ques.splice(0, requestBody.ques.length, ...selectedArrays);
+    for (var i = 0; i < selectedArrays.length; i++) {
+        var selectedArray = selectedArrays[i];
+        requestBody.ques[i].userAnswer = selectedArray.userAnswer;
+        requestBody.ques[i].id = selectedArray.id;
+        requestBody.ques[i].originOptions = selectedArray.originOptions;
     }
 }
 
