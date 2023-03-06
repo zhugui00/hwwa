@@ -25,9 +25,11 @@ var backupArrays = [
 ];
 
 var selectedArrays = [];
-while (selectedArrays.length < requestBody.ques.length) {
+while (selectedArrays.length < 10) {
     var randomIndex = Math.floor(Math.random() * backupArrays.length);
-    selectedArrays.push(backupArrays[randomIndex]);
+    if (!selectedArrays.includes(backupArrays[randomIndex])) {
+        selectedArrays.push(backupArrays[randomIndex]);
+    }
 }
 
 for (var i = 0; i < requestBody.ques.length; i++) {
@@ -38,6 +40,5 @@ for (var i = 0; i < requestBody.ques.length; i++) {
 }
 
 $done({
-    body: JSON.parse(JSON.stringify(requestBody))
+    body: requestBody
 });
-
