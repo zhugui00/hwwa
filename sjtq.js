@@ -42,5 +42,5 @@ if (requestBody && requestBody.ques) {
 }
 
 $done({
-    body: JSON.stringify(requestBody)
+    body: JSON.parse(JSON.stringify(requestBody))
 });
