@@ -1,7 +1,6 @@
 var requestBody = $request.body;
 
-if (requestBody && requestBody.ques) {
-    var backupArrays = [
+var backupArrays = [
         { "userAnswer": ["78423321649363"], "id": 21696746345394, "originOptions": [78419445352953,78420203187232,78423321649363,78425669241629] },
         { "userAnswer": ["78379660108563", "78384700300614", "78387444864153", "78389346600489"], id: 21688628448709, "originOptions": [78379660108563, 78382908615071, 78384700300614, 78387444864153, 78389346600489] },
         { "userAnswer": ["78427162885770", "78430132621171", "78433968926487", "78435920890912"], id: 21699795221391, "originOptions": [78427162885770, 78430132621171, 78431831005327, 78433968926487, 78435920890912] },
@@ -23,23 +22,22 @@ if (requestBody && requestBody.ques) {
         { "userAnswer": ["79204463057553"], id: 21902334462765, "originOptions": [79204463057553, 79205713649953, 79209187668183, 79210561417461] },
         { "userAnswer": ["79532997510078"], id: 21998620554308, "originOptions": [79532997510078, 79535262228933] },
         { "userAnswer": ["78546311135152"], "id": 21729802966439, "originOptions": [78546311135152,78547750511588,78548717052922,78551269549397] }
-        // 添加更多备选数组...
-    ];
+];
 
-    var selectedArrays = [];
-    while (selectedArrays.length < requestBody.ques.length) {
-        var randomIndex = Math.floor(Math.random() * backupArrays.length);
-        selectedArrays.push(backupArrays[randomIndex]);
-    }
+var selectedArrays = [];
+while (selectedArrays.length < requestBody.ques.length) {
+    var randomIndex = Math.floor(Math.random() * backupArrays.length);
+    selectedArrays.push(backupArrays[randomIndex]);
+}
 
-    for (var i = 0; i < selectedArrays.length; i++) {
-        var selectedArray = selectedArrays[i];
-        requestBody.ques[i].userAnswer = selectedArray.userAnswer;
-        requestBody.ques[i].id = selectedArray.id;
-        requestBody.ques[i].originOptions = selectedArray.originOptions;
-    }
+for (var i = 0; i < requestBody.ques.length; i++) {
+    var selectedArray = selectedArrays[i];
+    requestBody.ques[i].userAnswer = selectedArray.userAnswer;
+    requestBody.ques[i].id = selectedArray.id;
+    requestBody.ques[i].originOptions = selectedArray.originOptions;
 }
 
 $done({
     body: JSON.parse(JSON.stringify(requestBody))
 });
+
