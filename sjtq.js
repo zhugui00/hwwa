@@ -45,7 +45,7 @@ if (requestBody && requestBody.ques) {
     console.log('请求体格式不正确！');
 }
 
-
+console.log(requestBody);
 $done({
   body: JSON.stringify(requestBody, null, 2)
 }, false);
