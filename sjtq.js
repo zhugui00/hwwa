@@ -1,5 +1,4 @@
-var requestBody = $request.body;
-
+var requestBody = JSON.parse(decodeURIComponent($request.body));
 console.log(requestBody); // 打印请求体内容
 
 var backupArrays = [
