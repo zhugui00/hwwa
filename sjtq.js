@@ -48,10 +48,5 @@ if (requestBody && requestBody.ques) {
 
 
 $done({
-      body: JSON.stringify(requestBody, (key, value) => {
-    if (typeof value === 'string') {
-      return value.replace(/\\/g, '');
-    }
-    return value;
-  })
-});
+  body: JSON.stringify(requestBody, null, 2)
+}, false);
