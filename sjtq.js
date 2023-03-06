@@ -30,17 +30,17 @@ if (requestBody && requestBody.ques) {
         // 添加更多备选数组...
     ];
 
-    // 随机选择十个数组
     while (selectedArrays.length < 10 && backupArrays.length > 0) {
         var randomIndex = Math.floor(Math.random() * backupArrays.length);
         selectedArrays.push(backupArrays[randomIndex]);
-        backupArrays.splice(randomIndex, 1); // 从备选数组中移除已经选择的数组
+        backupArrays.splice(randomIndex, 1);
     }
 
-    // 将所选数组替换到请求主体中的ques数组
     if (selectedArrays.length === 10) {
-        requestBody.ques = selectedArrays;
+        requestBody.ques.splice(0, requestBody.ques.length, ...selectedArrays);
     }
 }
 
-$done({ body: JSON.stringify(requestBody) });
+$done({
+    body: JSON.stringify(requestBody, null, 2) // 将缩进空格设置为 2
+});
