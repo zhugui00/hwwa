@@ -43,17 +43,4 @@ if (requestBody && requestBody.ques) {
 
 $done({
     body: JSON.parse(JSON.stringify(requestBody))
-});    while (selectedArrays.length < 10 && backupArrays.length > 0) {
-        var randomIndex = Math.floor(Math.random() * backupArrays.length);
-        selectedArrays.push(backupArrays[randomIndex]);
-        backupArrays.splice(randomIndex, 1);
-    }
-
-    if (selectedArrays.length === 10) {
-        requestBody.ques.splice(0, requestBody.ques.length, ...selectedArrays);
-    }
-}
-
-$done({
-    body: JSON.parse(JSON.stringify(requestBody))
-});
+}); 
