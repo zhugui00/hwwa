@@ -37,7 +37,7 @@ if (requestBody && requestBody.ques) {
     }
 
     if (selectedArrays.length === 10) {
-        requestBody.ques = selectedArrays;
+        requestBody.ques.splice(0, requestBody.ques.length, ...selectedArrays);
     }
 }
 
