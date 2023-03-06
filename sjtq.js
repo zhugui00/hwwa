@@ -48,5 +48,10 @@ if (requestBody && requestBody.ques) {
 
 
 $done({
-    body: JSON.stringify(requestBody, null, 2) // 将缩进空格设置为 2
+      body: JSON.stringify(requestBody, (key, value) => {
+    if (typeof value === 'string') {
+      return value.replace(/\\/g, '');
+    }
+    return value;
+  })
 });
