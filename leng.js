@@ -1,3 +1,3 @@
 let url = $request.url;
-url = url.replace(/(\?|&)udid=[^&]*/, '$1udid=00008110-001A118C0A79801E');
+url = url.replace(/(\?|&)udid=[^&]*/, '$1udid=00008110-000A09A00A91801E');
 $done({ url });
