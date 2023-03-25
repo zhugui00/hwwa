@@ -1,0 +1,16 @@
+if ($response.statusCode == 200 && $response.body) {
+    let body = JSON.parse($response.body);
+    if (body.data && body.data.ques) {
+        for (let i = 0; i < body.data.ques.length; i++) {
+            let question = body.data.ques[i];
+            if (question.queType !== 1) {
+                question.queType = 1;
+            }
+        }
+        $done({body: JSON.stringify(body)});
+    } else {
+        $done({});
+    }
+} else {
+    $done({});
+}
