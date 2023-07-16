@@ -166,12 +166,21 @@ if (requestBody && requestBody.ques) {
         requestBody.ques[i].userAnswer = selectedArray.userAnswer;
         requestBody.ques[i].id = selectedArray.id;
         requestBody.ques[i].originOptions = selectedArray.originOptions;
+        requestBody.ques[i].useTimeSeconds = getRandomInt(30, 50); // 添加随机整数
     }
-} else {
+  } else {
     console.log('请求体格式不正确！');
-}
-
-console.log(requestBody);
-$done({
-  body: JSON.stringify(requestBody, null, 2)
-}, false);
+  }
+  
+  console.log(requestBody);
+  $done({
+    body: JSON.stringify(requestBody, null, 2)
+  }, false);
+  
+  // 生成指定范围内的随机整数
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  
