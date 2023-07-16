@@ -1,3 +1,9 @@
+  // 生成指定范围内的随机整数
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 var requestBody = JSON.parse(decodeURIComponent($request.body));
 console.log(requestBody); // 打印请求体内容
 
@@ -177,10 +183,5 @@ if (requestBody && requestBody.ques) {
     body: JSON.stringify(requestBody, null, 2)
   }, false);
   
-  // 生成指定范围内的随机整数
-  function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+
   
