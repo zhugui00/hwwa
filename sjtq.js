@@ -166,26 +166,21 @@ if (requestBody && requestBody.ques) {
         requestBody.ques[i].userAnswer = selectedArray.userAnswer;
         requestBody.ques[i].id = selectedArray.id;
         requestBody.ques[i].originOptions = selectedArray.originOptions;
-    var useTimeSeconds = requestBody.ques[i].useTimeSeconds;
-    if (useTimeSeconds < 30) {
-      requestBody.ques[i].useTimeSeconds = getRandomInt(30, 50); // 替换成30-50的随机整数
+        requestBody.ques[i].useTimeSeconds = getRandomInt(30, 50); // 添加随机整数
+      }
+      requestBody.useTimeSeconds = getRandomInt(30, 50); // 修改 useTimeSeconds 字段的值为随机整数
+    } else {
+      console.log('请求体格式不正确！');
     }
-  }
-} else {
-  console.log('请求体格式不正确！');
-}
-
-console.log(requestBody);
-$done({
-  body: JSON.stringify(requestBody, null, 2)
-}, false);
-
-// 生成指定范围内的随机整数
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-  
-
-  
+    
+    console.log(requestBody);
+    $done({
+      body: JSON.stringify(requestBody, null, 2)
+    }, false);
+    
+    // 生成指定范围内的随机整数
+    function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
